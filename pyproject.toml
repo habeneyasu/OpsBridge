@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "opsbridge"
+version = "0.1.0"
+description = "OpsBridge MCP Server - Demonstrating three-layer MCP architecture for cloud operations"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "OpsBridge Team"},
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "hypothesis",
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["opsbridge/tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --hypothesis-show-statistics"
+
+[tool.hypothesis]
+max_examples = 100
+database = ".hypothesis"
